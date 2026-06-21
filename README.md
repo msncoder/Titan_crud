@@ -38,6 +38,8 @@ project/
 ├── requirements.txt
 └── .env
 
+create database todo_db;
+
 1. .env
 DB_USER=root
 DB_PASSWORD=123456
