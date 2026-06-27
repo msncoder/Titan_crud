@@ -12,3 +12,30 @@ def create_todo(db:Session,todo:TodoCreate):
     db.commit()
     db.refresh(db_todo)
     return db_todo
+
+
+def get_todos(db:Session):
+    return db.query(Todo).all()
+
+def get_todo(db:Session,todo_id:int):
+    return db.query(Todo).filter(
+        Todo.id == todo_id
+    ).first()
+    
+
+
+def update_todo(
+        db:Session,
+        todo_id:int,
+        todo:TodoCreate
+):
+    todo_db = get_todo(db,todo_id)
+    if not todo_db:
+        return None
+    todo_db.title = todo.title
+    todo_db.description = todo.description
+
+    db.commit()
+    db.refresh(todo_db)
+
+    return todo_db

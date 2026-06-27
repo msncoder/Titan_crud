@@ -3,3 +3,6 @@
 alembic/__pycache__/
 app/core/__pycache__/
 app/models/__pycache__/
+
+app/crud/__pycache__/todo.cpython-314.pyc
+app/api/__pycache__/todo.cpython-314.pyc
