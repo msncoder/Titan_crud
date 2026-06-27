@@ -29,14 +29,31 @@ def get(todo_id:int,db:Session=Depends(get_db)):
     return todo
 
 @router.put("/{todo_id}")
-def update(
+def update_todo_route(
     todo_id:int,
     todo:TodoCreate,
     db:Session=Depends(get_db)
 ):
-    updated = update(db,todo_id,todo)
+    updated = update_todo(db,todo_id,todo)
     if not updated:
         raise HTTPException(
             status=404,
             details = "Todo not Found"
         )
+    return updated
+
+@router.delete("/{todo_id}")
+def delete(todo_id:int,db:Session=Depends(get_db)):
+    deleted = delete_todo(
+        db,todo_id
+    )
+
+    if not deleted:
+        return HTTPException(
+            status_code=404,
+            status = "Todo not deleted"
+        )
+    
+    return {
+        "message": "Todo deleted successfully"
+    }
