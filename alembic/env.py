@@ -10,6 +10,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
 from app.models.todo import *
+from app.models.user import *
 
 from app.core.database import Base
 from dotenv import load_dotenv
